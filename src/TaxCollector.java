@@ -1,5 +1,4 @@
-import Valuables.Valuable;
-import Valuables.ValuableFactory;
+
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -17,7 +16,7 @@ public class TaxCollector implements Runnable {
 
     public TaxCollector(TreasureRoom treasureRoom)
     {
-        this.room= treasureRoom;
+        this.room= treasureRoom;hh
         valuables= new ArrayList<>();
     }
     int count=0;
