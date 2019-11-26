@@ -25,32 +25,65 @@ public class King implements Runnable{
             int numOfThingsFromRoom = random.nextInt(15-5)+5;
 
             int pocketInMoney = 0;
+            treasureRoom.acquireWrite();
 
-            for (int i = 0; i < numOfThingsFromRoom; i++) {
-                treasureRoom.acquireWrite();
-                kingsPocket.add(treasureRoom.removeValuable());
-                treasureRoom.releaseWrite();
-            }
+            while( pocketInMoney < costOfParty) {
 
-            for (int i = 0; i <kingsPocket.size() ; i++) {
-                pocketInMoney =+ kingsPocket.get(i).getValue();
-            }
+                Valuable valuable = treasureRoom.removeValuable();
+                if(valuable!=null)
+                {
+                    logger.log("The king removed " +valuable.getName());
+                    kingsPocket.add(valuable);
+                    pocketInMoney+= valuable.getValue();
 
-            if (pocketInMoney<costOfParty){
-                logger.log("Party has been canceled");
-                treasureRoom.acquireWrite();
-                for (int i = 0; i < kingsPocket.size() ; i++) {
-                    treasureRoom.addValuable(kingsPocket.get(i));
                 }
-                treasureRoom.releaseWrite();
-            } else{
-                logger.log("Party on");
-                try{
-                    Thread.sleep(5000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
+                else
+                {
+                    for (int y = 0; y < kingsPocket.size(); y++)
+                    {
+
+                        treasureRoom.addValuable(kingsPocket.get(y));
+
+                    }
+                    logger.log("the king cancels the party");
+                    break;
+
                 }
+
             }
+
+            try
+            {
+                Thread.sleep(1000);
+            } catch (InterruptedException e)
+            {
+                e.printStackTrace();
+            }
+            treasureRoom.releaseWrite();
+
+
+//            if (pocketInMoney<costOfParty){
+//                logger.log("Party has been canceled");
+//                try
+//                {
+//                    Thread.sleep(1000);
+//                } catch (InterruptedException e)
+//                {
+//                    e.printStackTrace();
+//                }
+//                treasureRoom.acquireWrite();
+//                for (int i = 0; i < kingsPocket.size() ; i++) {
+//                    treasureRoom.addValuable(kingsPocket.get(i));
+//                }
+//                treasureRoom.releaseWrite();
+//            } else{
+//                logger.log("Party on");
+//                try{
+//                    Thread.sleep(5000);
+//                } catch (InterruptedException e) {
+//                    e.printStackTrace();
+//                }
+//            }
 
         }
     }

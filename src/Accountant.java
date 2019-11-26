@@ -6,6 +6,7 @@ public class Accountant implements Runnable {
 
     public Accountant(TreasureRoom treasureRoom){
         this.treasureRoom=treasureRoom;
+        logger = Logger.getInstance();
     }
 
     @Override

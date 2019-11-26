@@ -30,12 +30,9 @@ public class TaxCollector implements Runnable {
         int total=random1.nextInt(200-50+1) + 1;
         log.log("This tax Collector must generate" + total);
         while (!(count >= total )) {
-            int value = random2.nextInt(4 - 0 ) + 1;
-            log.log(Integer.toString(value));
+            int value = random2.nextInt(2 ) + 1;
             String valueName = values[value];
-            log.log(valueName);
             Valuable valuable = ValuableFactory.getValuable(valueName);
-            log.log(valuable.getName());
             count += valuable.getValue();
             log.log("Tax Collector added " + valuable.getName() + "to inventory");
             valuables.add(valuable);
