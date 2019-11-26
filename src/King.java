@@ -17,7 +17,7 @@ public class King implements Runnable{
             ArrayList<Valuable> kingsPocket = new ArrayList<Valuable>();
 
             int costOfParty = random.nextInt(150-50)+50;
-            System.out.println("Listen everyone. I'm making party");
+            logger.log("King is making new party");
 
             int numOfThingsFromRoom = random.nextInt(15-5)+5;
 
@@ -34,14 +34,14 @@ public class King implements Runnable{
             }
 
             if (pocketInMoney<costOfParty){
-                System.out.println("Party has been canceled");
+                logger.log("Party has been canceled");
                 treasureRoom.acquireWrite();
                 for (int i = 0; i < kingsPocket.size() ; i++) {
                     treasureRoom.addValuable(kingsPocket.get(i));
                 }
                 treasureRoom.releaseWrite();
             } else{
-                System.out.println("Party on");
+                logger.log("Party on");
                 try{
                     Thread.sleep(5000);
                 } catch (InterruptedException e) {
