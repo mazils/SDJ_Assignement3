@@ -1,3 +1,5 @@
+import Logger.Logger;
+
 public class Accountant implements Runnable {
     private TreasureRoom treasureRoom;
     private Logger logger;

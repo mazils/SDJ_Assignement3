@@ -1,5 +1,8 @@
 
 
+import Logger.Logger;
+import ValuableFactory.Valuable;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -64,14 +67,14 @@ public class TreasureRoom {
 
     }
 
-    public void doRead()
+    public int doRead()
     {
         int count= 0;
         Iterator<Valuable> iterator= valuables.iterator();
         while (iterator.hasNext()) {
             count += iterator.next().getValue();
         }
-        log.log("The worth of all the valuables of the kingdom is: " + count);
+        return count;
     }
 
     public void addValuable(Valuable valuable)

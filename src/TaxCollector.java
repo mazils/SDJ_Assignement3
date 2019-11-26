@@ -1,5 +1,8 @@
 
 
+import Logger.Logger;
+import ValuableFactory.*;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
@@ -7,7 +10,7 @@ import java.util.Random;
 
 public class TaxCollector implements Runnable {
 
-    private final String[] values= new String[]{"Cow","Diamond","GoldCoin","Jewel","Ruby"};
+    private final String[] values= new String[]{"cow","diamond","ruby"};
     private TreasureRoom room;
     private ArrayList<Valuable> valuables;
     Random random1= new Random();
@@ -16,7 +19,7 @@ public class TaxCollector implements Runnable {
 
     public TaxCollector(TreasureRoom treasureRoom)
     {
-        this.room= treasureRoom;hh
+        this.room= treasureRoom;
         valuables= new ArrayList<>();
     }
     int count=0;
