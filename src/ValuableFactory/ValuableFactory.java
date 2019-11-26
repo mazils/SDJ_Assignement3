@@ -31,6 +31,7 @@ public class ValuableFactory
                     valuable = new Ruby();
                 }
             }
+            valuableMap.put(valuableType,valuable);
         }
         return valuable;
     }
