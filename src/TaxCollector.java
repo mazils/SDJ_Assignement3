@@ -16,9 +16,11 @@ public class TaxCollector implements Runnable {
     Random random1= new Random();
     Random random2= new Random();
     Logger log= Logger.getInstance();
+    private ValuableFactory factory;
 
-    public TaxCollector(TreasureRoom treasureRoom)
+    public TaxCollector(TreasureRoom treasureRoom, ValuableFactory factory)
     {
+        this.factory=factory;
         this.room= treasureRoom;
         valuables= new ArrayList<>();
     }
@@ -32,7 +34,7 @@ public class TaxCollector implements Runnable {
         while (!(count >= total )) {
             int value = random2.nextInt(2 ) + 1;
             String valueName = values[value];
-            Valuable valuable = ValuableFactory.getValuable(valueName);
+            Valuable valuable = factory.getValuable(valueName);
             count += valuable.getValue();
             log.log("Tax Collector added " + valuable.getName() + "to inventory");
             valuables.add(valuable);

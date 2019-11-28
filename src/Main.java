@@ -4,17 +4,26 @@ import ValuableFactory.ValuableFactory;
 public class Main
 {
     public static void main(String[] args)
+
     {
         TreasureRoom treasureRoom = new TreasureRoom();
-        Accountant accountant = new Accountant(treasureRoom);
+        ValuableFactory valuableFactory = new ValuableFactory();
+        for (int i = 0; i <5 ; i++) {
+            Accountant accountant = new Accountant(treasureRoom);
+            Thread AccountantThread  = new Thread(accountant);
+            AccountantThread.start();
+        }
         King king = new King(Logger.getInstance(),treasureRoom);
-        TaxCollector taxCollector = new TaxCollector(treasureRoom);
 
-        Thread AccountantThread  = new Thread(accountant);
-        Thread TaxThread  = new Thread(taxCollector);
+        for (int i = 0; i <3 ; i++) {
+            TaxCollector taxCollector = new TaxCollector(treasureRoom, valuableFactory);
+            Thread TaxThread  = new Thread(taxCollector);
+            TaxThread.start();
+        }
+
+
         Thread KingThread = new Thread(king);
-        AccountantThread.start();
-        TaxThread.start();
+
         KingThread.start();
     }
 }
